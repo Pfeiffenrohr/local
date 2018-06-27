@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TimeCompare {
-	 public static void main( String args[] ) {
+	 public static void main( String args[] ) { 
 		 
 		 if (args.length < 11 )
 		 {
