@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ApixAlerts {
+public class ApixAlerts { 
 
     public static void main(String[] argv) {
 
