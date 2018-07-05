@@ -11,10 +11,10 @@ import java.util.Vector;
 
 public class DB {
 	protected Connection con = null;
-    protected boolean debug=true;
+    protected boolean debug=false;
 	/**
 	 * Macht den INI-Hash in der Klasse "global" und stellt die Verbindung zum
-	 * Datenbank-Server her.
+	 * Datenbank-Server her. 
 	 */
 
 	
