@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://richardlechner.spdns.de:8082/svn"
+   name=""
+   revision="359"
+   uuid="324664d3-fcac-48c3-855d-607d170a145b"
+   url="http://richardlechner.spdns.de:8082/svn/lifetrackerWeb"
+   committed-rev="359"
+   kind="dir"
+   committed-date="2015-11-09T21:04:15.023258Z"/>
+<entry
+   name=".classpath"
+   revision="373"
+   checksum="c532ce023ce1460278acc71ceda6a091"
+   text-time="2015-11-23T20:30:58.026000Z"
+   committed-rev="373"
+   kind="file"
+   committed-date="2015-11-23T20:38:43.319000Z"/>
+<entry
+   name=".project"
+   revision="360"
+   checksum="5af2a137f395ac106e3d68e417da3a2c"
+   text-time="2015-11-09T19:06:15.451000Z"
+   committed-rev="360"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name=".settings"
+   kind="dir"/>
+<entry
+   name="WebContent"
+   kind="dir"/>
+<entry
+   name="src"
+   kind="dir"/>
+</wc-entries>

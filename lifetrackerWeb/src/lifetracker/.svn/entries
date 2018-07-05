@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://richardlechner.spdns.de:8082/svn"
+   revision="360"
+   url="http://richardlechner.spdns.de:8082/svn/lifetrackerWeb/src/lifetracker"
+   committed-rev="360"
+   kind="dir"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="DB.java"
+   revision="373"
+   checksum="f298629895b67bc742db3144694a011b"
+   committed-rev="373"
+   text-time="2015-11-22T17:04:11.948000Z"
+   kind="file"
+   committed-date="2015-11-23T20:38:43.319000Z"/>
+<entry
+   name="Main.java"
+   revision="373"
+   checksum="7ec89be1906dc66bba174a2979328398"
+   committed-rev="373"
+   text-time="2015-11-22T21:19:22.035000Z"
+   kind="file"
+   committed-date="2015-11-23T20:38:43.319000Z"/>
+</wc-entries>

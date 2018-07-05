@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://richardlechner.spdns.de:8082/svn"
+   revision="360"
+   url="http://richardlechner.spdns.de:8082/svn/lifetrackerWeb/.settings"
+   committed-rev="360"
+   kind="dir"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name=".jsdtscope"
+   checksum="2dfb4ce067f1529d1934162e0152d9b8"
+   committed-rev="360"
+   text-time="2015-11-09T19:06:15.466000Z"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="org.eclipse.jdt.core.prefs"
+   checksum="8e002b3721607c3736c7e838f1a3984e"
+   committed-rev="360"
+   text-time="2015-11-09T19:06:14.940000Z"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="org.eclipse.wst.common.component"
+   revision="373"
+   checksum="8e91528ee2c5eb0c903da422a64a7167"
+   committed-rev="373"
+   text-time="2015-11-23T20:31:01.309000Z"
+   kind="file"
+   committed-date="2015-11-23T20:38:43.319000Z"/>
+<entry
+   name="org.eclipse.wst.common.project.facet.core.xml"
+   checksum="8b830d68abcab60a031af3b0109df582"
+   committed-rev="360"
+   text-time="2015-11-09T19:06:16.758000Z"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="org.eclipse.wst.jsdt.ui.superType.container"
+   checksum="b27d1cf62dde4473bab7c433317bb0ce"
+   committed-rev="360"
+   text-time="2015-11-09T19:06:15.468000Z"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="org.eclipse.wst.jsdt.ui.superType.name"
+   checksum="c89686a387d2b12b3c729ce35a0bcb5b"
+   committed-rev="360"
+   text-time="2015-11-09T19:06:15.467000Z"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+</wc-entries>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>lifetrackerWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>lifetracker</servlet-name>
+    <servlet-class>lifetracker.Main</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>transitchart</servlet-name>
+    <servlet-class>lifetracker.createTransitImage</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>lifetracker</servlet-name>
+    <url-pattern>/lifetracker</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+    <servlet-name>transitchart</servlet-name>
+    <url-pattern>/transitchart</url-pattern>
+    </servlet-mapping>
+    <context-param>
+    <param-name>DBusername</param-name>
+    <param-value>life-tracker</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBpassword</param-name>
+    <param-value>life-tracker</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBconnectstring</param-name>
+    <param-value>jdbc:mysql://192.168.2.25/lifetracker-test</param-value>
+  </context-param>
+</web-app>
