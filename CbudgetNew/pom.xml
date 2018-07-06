@@ -2,10 +2,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>CbudgetNew</groupId>
   <artifactId>CbudgetNew</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>-budget</name>
   <description>ojijo</description>
+  <dependencies>
+     <dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>javax.servlet-api</artifactId>
+     </dependency>
+  </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -26,4 +32,27 @@
       </plugin>
     </plugins>
   </build>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>javax.servlet</groupId>
+  			<artifactId>javax.servlet-api</artifactId>
+  			<version>3.1.0</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>jfreechart</groupId>
+  			<artifactId>jfreechart</artifactId>
+  			<version>1.0.0</version>
+  			<scope>system</scope>
+  			<systemPath>C:\MyProgramms\libs\jfreechart\jfreechart-1.0.19\lib\jfreechart-1.0.19.jar</systemPath>
+  		</dependency>
+  		<dependency>
+  			<groupId>jcommon</groupId>
+  			<artifactId>jcommon</artifactId>
+  			<version>1.0.0</version>
+  			<scope>system</scope>
+  			<systemPath>C:\MyProgramms\libs\jfreechart\jfreechart-1.0.19\lib\jcommon-1.0.23.jar</systemPath>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>
