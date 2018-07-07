@@ -11,6 +11,11 @@
 	<groupId>javax.servlet</groupId>
 	<artifactId>javax.servlet-api</artifactId>
      </dependency>
+     <dependency>
+     	<groupId>bmw</groupId>
+     	<artifactId>bmw</artifactId>
+     	<version>0.0.1-SNAPSHOT</version>
+     </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
