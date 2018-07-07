@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 	public class KategorieEinfuegen extends javax.servlet.http.HttpServlet {
 
-		private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L; 
 
 		public void doGet(javax.servlet.http.HttpServletRequest request,
 				javax.servlet.http.HttpServletResponse response)
