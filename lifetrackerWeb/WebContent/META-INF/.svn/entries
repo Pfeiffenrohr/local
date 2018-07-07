@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://richardlechner.spdns.de:8082/svn"
+   revision="360"
+   url="http://richardlechner.spdns.de:8082/svn/lifetrackerWeb/WebContent/META-INF"
+   committed-rev="360"
+   kind="dir"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="MANIFEST.MF"
+   checksum="b10f37c8bb1803d98c127a01d1a71cc5"
+   text-time="2015-11-09T19:06:15.321000Z"
+   committed-rev="360"
+   kind="file"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+</wc-entries>

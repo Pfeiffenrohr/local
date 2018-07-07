@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://richardlechner.spdns.de:8082/svn"
+   name=""
+   revision="365"
+   url="http://richardlechner.spdns.de:8082/svn/aquarium-web/WebContent/js"
+   uuid="324664d3-fcac-48c3-855d-607d170a145b"
+   committed-rev="307"
+   kind="dir"
+   committed-date="2015-09-05T13:33:31.603652Z"/>
+<entry
+   name="diffFolder.gif"
+   checksum="f91467ff270b1a7778c1eac89b611492"
+   committed-rev="307"
+   text-time="2015-09-05T13:33:31.603000Z"
+   kind="file"
+   committed-date="2015-09-05T13:33:31.603652Z"
+   prop-time="2015-11-16T21:34:19.868000Z"/>
+<entry
+   name="filter1.js"
+   checksum="40ee3e31cefb507e20158a3d183ffb80"
+   committed-rev="307"
+   text-time="2015-09-05T13:33:31.603000Z"
+   kind="file"
+   committed-date="2015-09-05T13:33:31.603652Z"/>
+<entry
+   name="ftiens4.js"
+   checksum="73aca8e1b25c91be5cf09526300eefc8"
+   committed-rev="307"
+   text-time="2015-09-05T13:33:31.603000Z"
+   kind="file"
+   committed-date="2015-09-05T13:33:31.603652Z"/>
+<entry
+   name="ua.js"
+   checksum="e3b3e79c7bf79d80d23e4bbd388f48a9"
+   committed-rev="307"
+   text-time="2015-09-05T13:33:31.603000Z"
+   kind="file"
+   committed-date="2015-09-05T13:33:31.603652Z"/>
+</wc-entries>

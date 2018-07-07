@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://richardlechner.spdns.de:8082/svn"
+   revision="371"
+   url="http://richardlechner.spdns.de:8082/svn/lifetrackerWeb/WebContent/bilder"
+   committed-rev="371"
+   kind="dir"
+   committed-date="2015-11-23T19:52:24.486000Z"/>
+<entry
+   name="auto.png"
+   revision="372"
+   checksum="639341aa17f8c3d472362f4203d28a4b"
+   text-time="2015-11-22T21:26:24.855000Z"
+   committed-rev="372"
+   kind="file"
+   committed-date="2015-11-23T19:52:29.599000Z"
+   prop-time="2015-11-23T19:52:21.699000Z"/>
+<entry
+   name="location.jpg"
+   revision="372"
+   checksum="0ca6e776f35c78b7a28d6e11951d230b"
+   text-time="2015-11-22T21:26:00.974000Z"
+   committed-rev="372"
+   kind="file"
+   committed-date="2015-11-23T19:52:29.599000Z"
+   prop-time="2015-11-23T19:52:21.636000Z"/>
+</wc-entries>
