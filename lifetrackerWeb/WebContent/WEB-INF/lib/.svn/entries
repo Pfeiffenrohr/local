@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://richardlechner.spdns.de:8082/svn"
+   name=""
+   revision="360"
+   url="http://richardlechner.spdns.de:8082/svn/lifetrackerWeb/WebContent/WEB-INF/lib"
+   committed-rev="360"
+   kind="dir"
+   committed-date="2015-11-09T21:04:58.578000Z"/>
+<entry
+   name="joda-time-2.9.jar"
+   revision="363"
+   checksum="47858d290d92e7c41b2b0a8456b38a75"
+   text-time="2015-11-15T17:21:30.176000Z"
+   committed-rev="363"
+   kind="file"
+   committed-date="2015-11-15T17:22:54.863000Z"
+   prop-time="2015-11-15T17:22:58.517000Z"/>
+<entry
+   name="mysql.jar"
+   revision="364"
+   checksum="535db25ced332799194c2991e80e5180"
+   text-time="2015-11-15T17:23:35.837000Z"
+   committed-rev="364"
+   kind="file"
+   committed-date="2015-11-15T17:24:00.827000Z"
+   prop-time="2015-11-15T17:23:53.116000Z"/>
+</wc-entries>
