@@ -5,7 +5,7 @@ import java.util.Date;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-public class DB {
+public class DB { 
 	protected Connection con = null;
     protected boolean debug=true;
 	/**
