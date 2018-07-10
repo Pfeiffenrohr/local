@@ -7,7 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 
-	//Aufruf http://localhost:8080/filme/MainFrame
+	//Aufruf http://localhost:8080/filme/MainFrame 
 
 	public class KategorieEinfuegen extends javax.servlet.http.HttpServlet {
 
