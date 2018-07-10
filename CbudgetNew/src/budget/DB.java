@@ -46,9 +46,11 @@ public class DB {
 		if (debug) if (debug) System.out.println("Verbinde mich zur Datenbank");
 		try {
 			try {
-				Class.forName("org.gjt.mm.mysql.Driver").newInstance(); // DB-
+				//Class.forName("org.gjt.mm.mysql.Driver").newInstance(); // DB-
 																		// Treiber
-																		// laden
+																// laden
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+																		
 			} catch (Exception E) {
 				System.err
 						.println("Konnte MySQL Datenbank-Treiber nicht laden!");
