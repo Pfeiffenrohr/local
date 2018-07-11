@@ -49,7 +49,7 @@ public class DB {
 				//Class.forName("org.gjt.mm.mysql.Driver").newInstance(); // DB-
 																		// Treiber
 																// laden
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
+				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 																		
 			} catch (Exception E) {
 				System.err
