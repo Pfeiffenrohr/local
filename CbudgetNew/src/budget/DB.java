@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class DB { 
 	protected Connection con = null;
-    protected boolean debug=true;
+    protected boolean debug=false;
 	/**
 	 * Macht den INI-Hash in der Klasse "global" und stellt die Verbindung zum
 	 * Datenbank-Server her.
@@ -43,7 +43,7 @@ public class DB {
 
 
 	public boolean dataBaseConnect(String username,String password, String connectString) {
-		if (debug) if (debug) System.out.println("Verbinde mich zur Datenbank");
+	 if (debug) System.out.println("Verbinde mich zur Datenbank");
 		try {
 			try {
 				//Class.forName("org.gjt.mm.mysql.Driver").newInstance(); // DB-
@@ -2328,14 +2328,17 @@ public class DB {
 		
 		public Vector onlyValidRules (Vector rules)
 		{
+			Vector newRules= new Vector();
 			for (int i=0; i<rules.size();i++)
 			{
 				if (! ((String)((Hashtable) rules.get(i)).get("name")).startsWith("_")) 
 				{
-				 rules.remove(i);
+					//System.out.println("Remove "+((String)((Hashtable) rules.get(i)).get("name")));
+				 //rules.remove(i);
+					newRules.addElement(rules.get(i));
 				}
 			}
-			return rules;
+			return newRules;
 		}
 		
 		public String getRuleCommand(Integer rule_id) {
