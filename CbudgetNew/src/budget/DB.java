@@ -2326,6 +2326,7 @@ public class DB {
 			return vec;
 		}
 		
+		
 		public String getRuleCommand(Integer rule_id) {
 			Vector vec = new Vector();
 			try {

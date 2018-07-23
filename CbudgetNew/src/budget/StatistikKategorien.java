@@ -124,7 +124,7 @@ import javax.servlet.http.HttpSession;
 					}
 					session.setAttribute("settings",settings);
 					Vector kat=db.getAllKategorien();
-					Vector rules=db.getAllRules();
+					Vector rules=hf.onlyValidRules(db.getAllRules());
 					
 					out.println("<html>");
 					out.println("<head>");

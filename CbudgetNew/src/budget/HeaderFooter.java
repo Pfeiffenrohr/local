@@ -72,4 +72,15 @@ public class HeaderFooter {
 			all.addElement(id);
 		}
 	}
+	public Vector onlyValidRules (Vector rules)
+	{
+		for (int i=0; i<rules.size();i++)
+		{
+			if (! ((String) rules.get(i)).startsWith("_")) 
+			{
+			 rules.remove(i);
+			}
+		}
+		return rules;
+	}
 }
