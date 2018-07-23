@@ -2326,6 +2326,17 @@ public class DB {
 			return vec;
 		}
 		
+		public Vector onlyValidRules (Vector rules)
+		{
+			for (int i=0; i<rules.size();i++)
+			{
+				if (! ((String)((Hashtable) rules.get(i)).get("name")).startsWith("_")) 
+				{
+				 rules.remove(i);
+				}
+			}
+			return rules;
+		}
 		
 		public String getRuleCommand(Integer rule_id) {
 			Vector vec = new Vector();
