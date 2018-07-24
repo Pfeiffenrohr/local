@@ -121,7 +121,7 @@ public class StatistikArtanalyse extends javax.servlet.http.HttpServlet {
 			db.updatesetting("KontoArtRuleId",rule_id);
 
 			Vector konten = db.getAllKonto();
-			Vector rules=db.getAllRules();
+			Vector rules=db.onlyValidRules(db.getAllRules());
 
 			out.println("<html>");
 			out.println("<head>");

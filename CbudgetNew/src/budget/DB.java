@@ -2341,6 +2341,11 @@ public class DB {
 			return newRules;
 		}
 		
+		/**
+		 * 
+		 * @param rule_id
+		 * @return
+		 */
 		public String getRuleCommand(Integer rule_id) {
 			Vector vec = new Vector();
 			try {

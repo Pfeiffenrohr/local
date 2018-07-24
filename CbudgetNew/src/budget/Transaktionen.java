@@ -154,7 +154,7 @@ import javax.servlet.http.HttpSession;
 					
 					
 					Vector kat=db.getAllKategorien();
-					Vector rules=db.getAllRules();
+					Vector rules=db.onlyValidRules(db.getAllRules());
 					
 					out.println("<html>");
 					out.println("<head>");

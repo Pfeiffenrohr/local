@@ -54,7 +54,7 @@ import javax.servlet.http.HttpSession;
 					}
 					Vector allAusgaben=db.getAllKategorien("ausgabe");
 					Vector allEinnahmen=db.getAllKategorien("einnahme");
-					Vector rules=db.getAllRules();
+					Vector rules=db.onlyValidRules(db.getAllRules());
 					session.setAttribute("allAusgaben",allAusgaben);
 					session.setAttribute("allEinnahmen",allEinnahmen);
 					out.println("<html>");

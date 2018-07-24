@@ -131,7 +131,7 @@ public class StatistikMonatsanalyse extends javax.servlet.http.HttpServlet {
 			}
 
 			Vector<?> kategorien = db.getAllKategorien();
-			Vector rules=db.getAllRules();
+			Vector rules=db.onlyValidRules(db.getAllRules());
 
 			out.println("<html>");
 			out.println("<head>");
