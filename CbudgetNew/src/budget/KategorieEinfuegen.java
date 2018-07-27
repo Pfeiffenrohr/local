@@ -61,6 +61,7 @@ import javax.servlet.http.HttpSession;
 				hash.put("parent",parent);
 				hash.put("description",beschreibung);
 				hash.put("mode",mode);
+				//hash.put("active",active);
 				
 				if (!checkfloat (monthlimit))
 				{

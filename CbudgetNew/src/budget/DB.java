@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class DB { 
 	protected Connection con = null;
-    protected boolean debug=false;
+    protected boolean debug=true;
 	/**
 	 * Macht den INI-Hash in der Klasse "global" und stellt die Verbindung zum
 	 * Datenbank-Server her.
@@ -337,7 +337,8 @@ public class DB {
 				+ hash.get("description") + "','"
 				+ hash.get("monthlimit") + "','"
 				+ hash.get("yearlimit") + "','"
-			    + hash.get("mode") + "')";
+				+ hash.get("mode") + "','"
+			    + hash.get("active") + "')";
 			if (debug) System.out.println(stm);
 			stmt = con.prepareStatement(stm);
 			stmt.executeUpdate();
@@ -357,6 +358,7 @@ public class DB {
 			String monthlimit =(String)hash.get("monthlimit");
 			String yearlimit =(String)hash.get("yearlimit");
 			String mode =(String)hash.get("mode");
+			String active =(String)hash.get("active");
 			String str= "update kategorien set " +
 					"name = '"+ name + "'," +
 					"description = '"+beschreibung+"',"+
@@ -520,7 +522,7 @@ public class DB {
 			res = stmt.executeQuery();
 			while (res.next()) {
 				Hashtable hash = new Hashtable();
-				hash.put("id", new Integer(res.getInt("id")));
+				hash.put("id", new Integer(res.getInt("id"))); 
 				hash.put("name", (String) res.getString("name"));
 				vec.addElement(hash);
 			}
@@ -554,7 +556,7 @@ public class DB {
 				{
 					getKategorienAlleRecursiv(((String)allKats.elementAt(i)),vec);
 				}
-				str_stm="select id,name,parent,description,limit_month,limit_year,mode from kategorien where name = '"+kategorie+"'";
+				str_stm="select id,name,parent,description,limit_month,limit_year,mode,active from kategorien where name = '"+kategorie+"'";
 				if (debug) System.out.println(str_stm);
 				stmt = con
 				.prepareStatement(str_stm);
@@ -569,6 +571,7 @@ public class DB {
 				hash.put("yearlimit", new Float(res.getFloat("limit_year")));
 				hash.put("description", (String) res.getString("description"));
 				hash.put("mode", (String) res.getString("mode"));
+				hash.put("active", new Integer(res.getInt("active")));
 				vec.addElement(hash);
 		}
 			} catch (SQLException e) {
