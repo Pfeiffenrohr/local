@@ -55,12 +55,14 @@ import javax.servlet.http.HttpSession;
 				String monthlimit =request.getParameter("monthlimit");
 				String yearlimit = request.getParameter("yearlimit");
 				String mode=request.getParameter("art");
+				String active=request.getParameter("active");
 				
 				Hashtable hash= new Hashtable();
 				hash.put("name",name);
 				hash.put("parent",parent);
 				hash.put("description",beschreibung);
 				hash.put("mode",mode);
+				hash.put("active",active);
 				//hash.put("active",active);
 				
 				if (!checkfloat (monthlimit))

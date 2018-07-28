@@ -57,7 +57,7 @@ import javax.servlet.http.HttpSession;
 				String monthlimit =request.getParameter("monthlimit");
 				String yearlimit = request.getParameter("yearlimit");
 				String mode = request.getParameter("art");
-				
+				String active = request.getParameter("active");
 				
 				hash.put("name",name);
 				hash.put("parent",parent);
@@ -65,6 +65,7 @@ import javax.servlet.http.HttpSession;
 				hash.put("monthlimit",monthlimit);
 				hash.put("yearlimit",yearlimit);
 				hash.put("mode",mode);
+				hash.put("active",active);
 				
 				HeaderFooter hf = new HeaderFooter();
 				out.println("<html>");
