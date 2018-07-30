@@ -92,7 +92,7 @@ class ConnectionHandler implements Runnable {
 	            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 	            DBBatch db = new DBBatch();
 	            db.dataBaseConnect(user, pass, datenbank);
-	            Vector kat = db.getAllKategorien();
+	            Vector kat = db.getAllActiveKategorien();
 	            oos.writeObject("send Kat");
 	            if (debug)
 	            {

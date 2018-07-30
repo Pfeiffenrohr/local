@@ -162,10 +162,11 @@ import javax.servlet.http.HttpSession;
 				if (((Integer)trans.get("cycle")).intValue()>0 )
 				{
 					out.println("<p>");
-					out.println("<input type=\"radio\" name=\"anwenden\" value=\"alle\" checked> Auf alle anwenden <br>");
+					out.println("<input type=\"radio\" name=\"anwenden\" value=\"einzeln\"checked > Nur auf diese Transaktionen anwenden<br>");
+					out.println("<input type=\"radio\" name=\"anwenden\" value=\"alle\"> Auf alle anwenden <br>");
 					out.println("<input type=\"radio\" name=\"anwenden\" value=\"folgend\"> Auf diese und folgende Transaktionen anwenden<br>");
 					out.println("<input type=\"radio\" name=\"anwenden\" value=\"zuvor\"> Auf diese und zurückliegende Transaktionen anwenden <br>");
-					out.println("<input type=\"radio\" name=\"anwenden\" value=\"einzeln\"> Nur auf diese Transaktionen anwenden<br>");
+					
 				    out.println("<p>");
 				}
 				if (((String)trans.get("planed")).equals("j"))

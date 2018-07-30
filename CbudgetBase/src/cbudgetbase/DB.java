@@ -274,7 +274,7 @@ public class DB {
 			PreparedStatement stmt;
 			ResultSet res = null;
 			stmt = con
-					.prepareStatement("select id,name,parent,description,limit_month,limit_year,mode from kategorien order by name");
+					.prepareStatement("select id,name,parent,description,limit_month,limit_year,mode,active from kategorien order by name");
 			res = stmt.executeQuery();
 			while (res.next()) {
 				Hashtable hash = new Hashtable();
@@ -286,7 +286,7 @@ public class DB {
 				hash.put("yearlimit", new Float(res.getFloat("limit_year")));
 				hash.put("description", (String) res.getString("description"));
 				hash.put("mode", (String) res.getString("mode"));
-				
+				hash.put("active", new Integer(res.getInt("active")));
 				vec.addElement(hash);
 			}
 		} catch (SQLException e) {
@@ -305,7 +305,7 @@ public class DB {
 			PreparedStatement stmt;
 			ResultSet res = null;
 			stmt = con
-					.prepareStatement("select id,name,parent,description,limit_month,limit_year,mode from kategorien where mode='"+mode+"' order by name");
+					.prepareStatement("select id,name,parent,description,limit_month,limit_year,mode,active from kategorien where mode='"+mode+"' order by name");
 			res = stmt.executeQuery();
 			while (res.next()) {
 				Hashtable hash = new Hashtable();
@@ -317,7 +317,7 @@ public class DB {
 				hash.put("yearlimit", new Float(res.getFloat("limit_year")));
 				hash.put("description", (String) res.getString("description"));
 				hash.put("mode", (String) res.getString("mode"));
-				
+				hash.put("active", new Integer(res.getInt("active")));
 				vec.addElement(hash);
 			}
 		} catch (SQLException e) {
@@ -329,6 +329,38 @@ public class DB {
 		return vec;
 	}
 
+	public Vector getAllActiveKategorien() {
+		Vector vec = new Vector();
+		try {
+
+			PreparedStatement stmt;
+			ResultSet res = null;
+			stmt = con
+					.prepareStatement("select id,name,parent,description,limit_month,limit_year,mode,active from kategorien where active=1 order by name");
+			res = stmt.executeQuery();
+			while (res.next()) {
+				Hashtable hash = new Hashtable();
+				hash.put("id", new Integer(res.getInt("id")));
+				hash.put("name", (String) res.getString("name"));
+				hash.put("parent", (String) res.getString("parent"));
+				hash.put("description", (String) res.getString("description"));
+				hash.put("monthlimit", new Float(res.getFloat("limit_month")));
+				hash.put("yearlimit", new Float(res.getFloat("limit_year")));
+				hash.put("description", (String) res.getString("description"));
+				hash.put("mode", (String) res.getString("mode"));
+				hash.put("active", new Integer(res.getInt("active")));
+				vec.addElement(hash);
+			}
+		} catch (SQLException e) {
+			System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
+			return vec;
+		}
+		if (debug) System.out.println("Select-Anweisung ausgeführt");
+		// return summe/(float)getAnz(tag,monat,year);
+		return vec;
+	}
+
+	
 	public boolean insertKategorie(Hashtable hash) {
 		try {
 

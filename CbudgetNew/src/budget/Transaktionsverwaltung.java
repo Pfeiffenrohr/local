@@ -57,7 +57,7 @@ import javax.servlet.http.HttpSession;
 				Vector vecTrans= new Vector();
 				
 				Vector allKategorien= new Vector();
-				allKategorien=db.getAllKategorien();
+				allKategorien=db.getAllActiveKategorien();
 				Vector allKonten= new Vector();
 				allKonten=db.getAllKonto();
 				session.setAttribute("konten", allKonten);

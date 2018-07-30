@@ -154,7 +154,7 @@ import javax.servlet.http.HttpSession;
 					db.updatesetting("transaktionRuleId",rule_id);
 					
 					
-					Vector kat=db.getAllKategorien();
+					Vector kat=db.getAllActiveKategorien();
 					Vector rules=db.onlyValidRules(db.getAllRules());
 					
 					out.println("<html>");
@@ -213,7 +213,7 @@ import javax.servlet.http.HttpSession;
 					//String checked="";
 					out.println("<p>Name: <br><input name=\"name\" type=\"text\" size=\"40\" value=\""+name+"\"maxlength=\"50\"></p>");
 					out.println("<p>");
-					Vector kategorien=db.getAllKategorien();
+					Vector kategorien=db.getAllActiveKategorien();
 					out.println("Kategorie: <select name=\"kategorie\" size=\"7\">");
 					//out.println("<option>   </option>");
 					out.println("<option></option>");
