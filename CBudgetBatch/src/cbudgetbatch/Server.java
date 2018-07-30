@@ -1,4 +1,4 @@
-package budget_batch;
+package cbudgetbatch;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

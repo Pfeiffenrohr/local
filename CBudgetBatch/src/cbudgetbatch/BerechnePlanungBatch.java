@@ -1,4 +1,4 @@
-package budget_batch;
+package cbudgetbatch;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.Hashtable;
 
-import budget.DB;
-import budget.HeaderFooter;
+import cbudgetbase.DB;
+//import budget.HeaderFooter;
+
 
 public class BerechnePlanungBatch {
 	static String user;

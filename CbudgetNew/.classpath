@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="C:/MyProgramms/apache-tomcat-8.5.32/apache-tomcat-8.5.32/lib/websocket-api.jar"/>
 	<classpathentry kind="lib" path="C:/MyProgramms/libs/bmw.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CbudgetBase"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

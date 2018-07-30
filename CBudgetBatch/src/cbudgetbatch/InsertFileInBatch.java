@@ -1,4 +1,4 @@
-package budget_batch;
+package cbudgetbatch;
 import common.FileHandling;
 
 import java.text.SimpleDateFormat;

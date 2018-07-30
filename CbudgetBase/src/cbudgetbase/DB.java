@@ -1,12 +1,14 @@
-package budget;
+package cbudgetbase;
+
 
 import java.util.*;
 import java.util.Date;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
+
 public class DB { 
-	protected Connection con = null;
+	public Connection con = null;
     protected boolean debug=true;
 	/**
 	 * Macht den INI-Hash in der Klasse "global" und stellt die Verbindung zum
@@ -1004,7 +1006,7 @@ public class DB {
 		return hash;
 	}
 	
-	int getAnzCycleEintrag (String kor_id,String datum,boolean schonEingetragen)
+	public int getAnzCycleEintrag (String kor_id,String datum,boolean schonEingetragen)
 	{
 		int erg=0;
 		try {

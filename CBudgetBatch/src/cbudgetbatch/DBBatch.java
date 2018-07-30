@@ -1,4 +1,4 @@
-package budget_batch;
+package cbudgetbatch;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,8 +7,8 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Vector;
+import cbudgetbase.DB;
 
-import budget.DB;
 
 public class DBBatch extends DB {
 	public boolean dataBaseConnect(String user, String passwort, String datenbank) {

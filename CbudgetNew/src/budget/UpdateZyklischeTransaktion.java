@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Vector;
 import java.util.Hashtable;
+import cbudgetbase.DB;
 
 public class UpdateZyklischeTransaktion {
 	
