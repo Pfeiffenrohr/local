@@ -13,5 +13,10 @@ public class GreetingController {
         model.addAttribute("name", name);
         return "greeting";
     }
+    @GetMapping("/mygreeting")
+    public String mygreeting(@RequestParam(name="name", required=false, defaultValue="MyWorld") String name, Model model) {
+        model.addAttribute("name", name);
+        return "mygreeting";
+    }
 
 }

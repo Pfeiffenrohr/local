@@ -52,5 +52,5 @@ public class ApplicationTest {
         mockMvc.perform(get("/greeting").param("name", "Greg"))
                 .andExpect(content().string(containsString("Hello, Greg!")));
     }
-
+    
 }
