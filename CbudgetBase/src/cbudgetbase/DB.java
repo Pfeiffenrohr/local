@@ -399,6 +399,7 @@ public class DB {
 					"parent = '"+parent+"',"+
 					"limit_month = '"+monthlimit+"',"+
 					"mode = '"+mode+"',"+
+					"active = '"+active+"',"+
 					"limit_year = '"+yearlimit+"' where id = '"+id+"'";
 					
 				

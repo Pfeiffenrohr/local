@@ -10,7 +10,7 @@ public class Rain {
 		DB db = new DB();
 		Vector all = new Vector();
 	//Connect to database
-		db.dataBaseConnect("wetter", "wetter", "jdbc:mysql://localhost/wetter");
+		db.dataBaseConnect("wetter", "wetter", "jdbc:mysql://192.168.2.21/wetter");
 		all=db.getRain();
 		Double rain=0.0;
 		String datum;
