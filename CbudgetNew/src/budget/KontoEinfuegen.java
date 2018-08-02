@@ -2,6 +2,7 @@ package budget;
 
 import java.io.PrintWriter;
 import java.util.Hashtable;
+import cbudgetbase.DB;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
