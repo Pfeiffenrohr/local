@@ -235,9 +235,9 @@ public class StatistikVerlauf extends javax.servlet.http.HttpServlet {
 				if (!first) {
 					wherestring = wherestring + " and ";
 				}
-				wherestring = wherestring + " datum > "
-						+ startdatum.replaceAll("-", "") + " and datum <= "
-						+ enddatum.replaceAll("-", "") +rule+ " order by datum";
+				wherestring = wherestring + " datum >  to_date('"
+						+ startdatum  + "','YYY-MM-DD') and datum <= to_date('"
+						+ enddatum+"','YYY-MM-DD' )" +rule+ " order by datum";
 				wherestring = " where " + wherestring;
 
 				Double aktwert = db.getAktuellerKontostand(str_konten,
