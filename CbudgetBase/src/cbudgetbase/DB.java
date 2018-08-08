@@ -644,7 +644,7 @@ public class DB {
 				{
 					sum=sum+getKategorienAlleRecursivSumme(((String)allKats.elementAt(i)),startdatum,enddatum,rule);
 				}
-				str_stm="select sum(wert) as summe from transaktionen where kategorie = (select id from kategorien where name ='"+kategorie+"') and datum >= +  to_date('"+startdatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+" and datum <= "+ enddatum.replaceAll("-","")+rule;
+				str_stm="select sum(wert) as summe from transaktionen where kategorie = (select id from kategorien where name ='"+kategorie+"') and datum >=   to_date('"+startdatum+"', 'YYYY-MM-DD')"+" and datum <=  to_date('"+enddatum+"', 'YYYY-MM-DD')"+rule;
 				
 				if (debug) System.out.println(str_stm);
 				stmt = con
@@ -667,7 +667,7 @@ public class DB {
 		try {
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select sum(wert) as summe from transaktionen where datum >= +  to_date('"+startdatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+" and datum <= +  to_date('"+enddatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+" and "+where;
+			String str_stm="select sum(wert) as summe from transaktionen where datum >=   to_date('"+startdatum+"', 'YYYY-MM-DD')"+" and datum <=   to_date('"+enddatum+"', 'YYYY-MM-DD')"+" and "+where;
 			if (debug)System.out.println(str_stm);
 			stmt = con
 			.prepareStatement(str_stm);
@@ -1469,7 +1469,7 @@ public class DB {
 			{
 				single_konto="konto_id=(select id from konten where kontoname='"+konto+"')and ";
 			}
-			System.out.println("!!!Datum = " + datum);
+			
 			str_stm=("select sum(wert) as summe from transaktionen where "+single_konto+" datum <= to_date('"+convDatum(datum)+"','YYYY-MM-DD')"+where);
 			if (debug) System.out.println(str_stm);
 			stmt = con
@@ -2608,11 +2608,11 @@ public class DB {
 			else
 			{
 			String year= dat.substring(0,4);
-			System.out.println("year = "+year);
+			//System.out.println("year = "+year);
 			String month= dat.substring(4,6);
-			System.out.println("month = "+month);
+			//System.out.println("month = "+month);
 			String day= dat.substring(6,8);
-			System.out.println("day = "+day);
+			//System.out.println("day = "+day);
 			return year+"-"+month+"-"+day;
 			}
 		}

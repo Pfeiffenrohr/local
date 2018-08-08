@@ -35,6 +35,13 @@
      	<artifactId>CbudgetBase</artifactId>
      	<version>1.0.1-SNAPSHOT</version>
      </dependency>
+     <dependency>
+     	<groupId>postgresql</groupId>
+     	<artifactId>postgresql</artifactId>
+     	<version>42.2.24</version>
+     	<scope>system</scope>
+     	<systemPath>${basedir}/lib/postgresql-42.2.4.jar</systemPath>
+     </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
