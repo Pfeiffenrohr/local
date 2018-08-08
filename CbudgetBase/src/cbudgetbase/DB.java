@@ -813,7 +813,7 @@ public class DB {
 			//String kor_id=getKontoId((String)hash.get("kor_konto")).toString();
 			String kat_id=getKategorieId((String)hash.get("kategorie")).toString();
 			PreparedStatement stmt;
-			String stm= "insert into transaktionen values(null,'" 
+			String stm= "insert into transaktionen values(default,'" 
 				+ hash.get("name") + "',"
 				+ konto_id + ","
 				+ hash.get("wert")  + ",'"
@@ -830,7 +830,7 @@ public class DB {
 			insert_history((String)hash.get("user"),"0","where name='"+hash.get("name")+"' and" +
 					 " konto_id=" + konto_id + " and" +
 					 " wert=" + hash.get("wert") + " and" +
-					 " datum=" + ((String)hash.get("datum")).replaceAll("-", "") + " and" +
+					 " datum='" + ((String)hash.get("datum")) + "' and" +
 					 " beschreibung='" + hash.get("beschreibung") + "' and" +
 					 " kategorie = "+ kat_id + " and" +
 					 " partner='" + hash.get("partner") + "'");
@@ -845,7 +845,7 @@ public class DB {
 		try {
 			
 			PreparedStatement stmt;
-			String stm= "insert into transaktionen values(null,'" 
+			String stm= "insert into transaktionen values(default,'" 
 				+ hash.get("name") + "',"
 				+ hash.get("konto") + ","
 				+ hash.get("wert")  + ",'"
@@ -862,7 +862,7 @@ public class DB {
 			insert_history((String)hash.get("user"),"0","where name='"+hash.get("name")+"' and" +
 										 " konto_id=" + hash.get("konto") + " and" +
 										 " wert=" + hash.get("wert") + " and" +
-										 " datum=" + ((String)hash.get("datum")).replaceAll("-", "") + " and" +
+										 " datum='" + ((String)hash.get("datum")) + "' and" +
 										 " beschreibung='" + hash.get("beschreibung") + "' and" +
 										 " kategorie='" + hash.get("kategorie") + "' and" +
 										 " partner='" + hash.get("partner") + "'");
@@ -877,7 +877,7 @@ public class DB {
 		try {
 			
 			PreparedStatement stmt;
-			String stm= "insert into transaktionen values(null,'" 
+			String stm= "insert into transaktionen values(,'" 
 				+ hash.get("name") + "',"
 				+ hash.get("konto") + ","
 				+ hash.get("wert")  + ",'"
@@ -894,7 +894,7 @@ public class DB {
 			insert_history((String)hash.get("user"),"0","where name='"+hash.get("name")+"' and" +
 					 " konto_id=" + hash.get("konto") + " and" +
 					 " wert=" + hash.get("wert") + " and" +
-					 " datum=" + ((String)hash.get("datum")).replaceAll("-", "") + " and" +
+					 " datum='" + ((String)hash.get("datum")) + "' and" +
 					 " beschreibung='" + hash.get("beschreibung") + "' and" +
 					 " kategorie='" + hash.get("kategorie") + "' and" +
 					 " partner='" + hash.get("partner") + "'");
@@ -913,7 +913,7 @@ public class DB {
 			String stm="";
 			if (update.equals("0"))
 			{
-			stm= "insert into reccuring values(null," 
+			stm= "insert into reccuring values(default," 
 				+ hash.get("korid") + ",'"
 				+ hash.get("end_datum") + "','"
 				+ hash.get("wiederholung") + "','"
@@ -1200,7 +1200,7 @@ public class DB {
 			String str_stm="select id from transaktionen where " +
 					" name = '"+ trans.get("name")+"' and " +
 					" konto_id = "+ trans.get("konto") + " and "+
-					" datum = " + ((String)trans.get("datum")).replaceAll("-", "") + " and "+
+					" datum = " + convDatum(((String)(trans.get("datum")))) + " and "+
 					" kategorie = "+ trans.get("kategorie")+ " and "+
 					" kor_id =  "+ trans.get("kor_id");
 			if (debug) System.out.println(str_stm);
@@ -1761,7 +1761,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into planung values(null,'" 
+			String stm= "insert into planung values(default,'" 
 				+ hash.get("name") + "','"
 				+ hash.get("beschreibung") + "','"
 				+ hash.get("startdatum") + "','"
@@ -1835,7 +1835,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into planung_daten values(null," 
+			String stm= "insert into planung_daten values(default," 
 				+ plan_id+ ","
 				+ kategorie+ ","
 				+ wert+ ",'"
@@ -2466,7 +2466,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into rules_item values(null,"
+			String stm= "insert into rules_item values(default,"
 				+ hash.get("rule_id") + ",'"
 				+ hash.get("art") + "','"
 				+ hash.get("operator") + "','"
@@ -2543,18 +2543,18 @@ public class DB {
 				vec.addElement( new Integer(res.getInt("id")));				
 			}
 			Calendar cal_akt= Calendar.getInstance();
-			SimpleDateFormat formaterDate = new SimpleDateFormat("yyyyMMdd");
-			SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
+			SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat formaterTime = new SimpleDateFormat("HH:mm:ss");
 			for (int i=0;i<vec.size();i++)
 			{
 				
 			
 			//PreparedStatement stmt;
-			String stm= "insert into transaktion_history values(null,"
+			String stm= "insert into transaktion_history values(default,"
 				+ vec.elementAt(i)+",'"
-				+ mode +"',"
-				+ formaterDate.format(cal_akt.getTime())+","
-				+ formaterTime.format(cal_akt.getTime())+",'"
+				+ mode +"','"
+				+ formaterDate.format(cal_akt.getTime())+"','"
+				+ formaterTime.format(cal_akt.getTime())+"','"
 				+ user+"')";
 				;			
 			if (debug) System.out.println(stm);

@@ -60,7 +60,7 @@ public class GenerateChart extends HttpServlet {
 		//createDataset(chartVec);
 
 		if (mode.equals("verlauf")) {
-			System.err.println("Create Chart");
+			//System.err.println("Create Chart");
 			XYDataset dataset = createDataset(chartVec);
 			//System.err.println("Create Dataset");
 			//System.err.println(chartVec);
