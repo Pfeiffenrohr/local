@@ -67,7 +67,7 @@ public class StatistikMonatsanalyse extends javax.servlet.http.HttpServlet {
 				if (settings.containsKey("MonatStartdatum"))
 				{
 					startdatum=(String)settings.get("MonatStartdatum");
-					System.err.println("Stardatum = "+startdatum);
+					//System.err.println("Stardatum = "+startdatum);
 				}
 				else
 				{							

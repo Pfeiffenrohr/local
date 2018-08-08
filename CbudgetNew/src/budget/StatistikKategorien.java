@@ -65,7 +65,7 @@ import javax.servlet.http.HttpSession;
 						if (settings.containsKey("kategorieStartdatum"))
 						{
 							startdatum=(String)settings.get("kategorieStartdatum");
-							System.err.println("Stardatum = "+startdatum);
+							//System.err.println("Stardatum = "+startdatum);
 						}
 						else
 						{							

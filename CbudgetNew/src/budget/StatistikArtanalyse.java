@@ -67,7 +67,7 @@ public class StatistikArtanalyse extends javax.servlet.http.HttpServlet {
 				if (settings.containsKey("KontoArtStartdatum"))
 				{
 					startdatum=(String)settings.get("KontoArtStartdatum");
-					System.err.println("Stardatum = "+startdatum);
+					//System.err.println("Stardatum = "+startdatum);
 				}
 				else
 				{							

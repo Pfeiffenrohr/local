@@ -369,7 +369,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into kategorien values(null,'" 
+			String stm= "insert into kategorien values(default,'" 
 				+ hash.get("name") + "','"
 				+ hash.get("parent") + "','"
 				+ hash.get("description") + "','"
@@ -689,15 +689,15 @@ public class DB {
 		try {
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select sum(trans.wert) from transaktionen trans  "
+			String str_stm="select sum(trans.wert) as summe from transaktionen trans  "
 					+ "join konten kont on kont.id = trans.konto_id and "
-					+ "kont.mode = '"+mode+"' where trans.datum <= to_date('"+startdatum.replaceAll("-","")+"', 'YYYY-MM-DD')" + rule ;
+					+ "kont.mode = '"+mode+"' where trans.datum <= to_date('"+convDatum(startdatum)+"', 'YYYY-MM-DD')" + rule ;
 			if (debug)System.out.println(str_stm);
 			stmt = con
 			.prepareStatement(str_stm);
 	       res = stmt.executeQuery();
 	   	while (res.next()) {
-			sum=(res.getDouble("sum(trans.wert)"));
+			sum=(res.getDouble("summe"));
 	   	}
 		} catch (SQLException e) {
 			System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
@@ -2300,8 +2300,8 @@ public class DB {
 			try {
 				Integer rule_id =(Integer)hash.get("rule_id");
 				Calendar cal_akt= Calendar.getInstance();
-				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyyMMdd");
-				SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
+				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat formaterTime = new SimpleDateFormat("HH:mm:ss");
 				String str= "update rules set " +
 						"name = '"+ hash.get("name") + "'," +
 						"beschreibung = '"+ hash.get("beschreibung") +"',"+
