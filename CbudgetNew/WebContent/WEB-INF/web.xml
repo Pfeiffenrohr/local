@@ -330,6 +330,6 @@
   </context-param>
   <context-param>
     <param-name>DBconnectstring</param-name>
-    <param-value>jdbc:mysql://localhost/budget</param-value>
+    <param-value>jdbc:mysql://192.168.2.21/budgetNeu</param-value>
   </context-param>
 </web-app>
