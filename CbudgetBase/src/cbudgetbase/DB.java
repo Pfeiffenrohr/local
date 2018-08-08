@@ -51,7 +51,7 @@ public class DB {
 				//Class.forName("org.gjt.mm.mysql.Driver").newInstance(); // DB-
 																		// Treiber
 																// laden
-				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				Class.forName("org.postgresql.Driver").newInstance();
 																		
 			} catch (Exception E) {
 				System.err
@@ -59,12 +59,16 @@ public class DB {
 				return false;
 			}
 			//String url = "jdbc:mysql://192.168.2.8/budget_test";
-			con = DriverManager.getConnection(connectString, username, password); // Verbindung
+			//con = DriverManager.getConnection(connectString, username, password); // Verbindung
 		      													// herstellen
+			
+				 con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/budget", "budget", "budget");
+				//con = DriverManager.getConnection("jdbc:postgresql://localhost:5431/budget", "myuser", "myuser");
+			//DriverManager.getConnection("jdbc:postgresql://localhost:5432/budget?user=budget&password=");
 			if (debug) System.out.println("Verbindung erstellt");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Treiber fuer mySQL nicht gefunden");
+			System.err.println("Treiber fuer postgres nicht gefunden");
 			return false;
 		}
 		return true;
@@ -365,7 +369,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into kategorien values(null,'" 
+			String stm= "insert into kategorien values(default,'" 
 				+ hash.get("name") + "','"
 				+ hash.get("parent") + "','"
 				+ hash.get("description") + "','"
@@ -640,14 +644,14 @@ public class DB {
 				{
 					sum=sum+getKategorienAlleRecursivSumme(((String)allKats.elementAt(i)),startdatum,enddatum,rule);
 				}
-				str_stm="select sum(wert) from transaktionen where kategorie = (select id from kategorien where name ='"+kategorie+"') and datum >= "+ startdatum.replaceAll("-","")+" and datum <= "+ enddatum.replaceAll("-","")+rule;
+				str_stm="select sum(wert) as summe from transaktionen where kategorie = (select id from kategorien where name ='"+kategorie+"') and datum >=   to_date('"+startdatum+"', 'YYYY-MM-DD')"+" and datum <=  to_date('"+enddatum+"', 'YYYY-MM-DD')"+rule;
 				
 				if (debug) System.out.println(str_stm);
 				stmt = con
 				.prepareStatement(str_stm);
 		res = stmt.executeQuery();
 		while (res.next()) {
-				sum=sum +(res.getDouble("sum(wert)"));
+				sum=sum +(res.getDouble("summe"));
 		}
 			} catch (SQLException e) {
 				System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
@@ -663,13 +667,13 @@ public class DB {
 		try {
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select sum(wert) from transaktionen where datum >= "+ startdatum.replaceAll("-","")+" and datum <= "+ enddatum.replaceAll("-","")+" and "+where;
+			String str_stm="select sum(wert) as summe from transaktionen where datum >=   to_date('"+startdatum+"', 'YYYY-MM-DD')"+" and datum <=   to_date('"+enddatum+"', 'YYYY-MM-DD')"+" and "+where;
 			if (debug)System.out.println(str_stm);
 			stmt = con
 			.prepareStatement(str_stm);
 	       res = stmt.executeQuery();
 	   	while (res.next()) {
-			sum=(res.getDouble("sum(wert)"));
+			sum=(res.getDouble("summe"));
 	   	}
 		} catch (SQLException e) {
 			System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
@@ -685,15 +689,15 @@ public class DB {
 		try {
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select sum(trans.wert) from transaktionen trans  "
+			String str_stm="select sum(trans.wert) as summe from transaktionen trans  "
 					+ "join konten kont on kont.id = trans.konto_id and "
-					+ "kont.mode = '"+mode+"' where trans.datum <= "+startdatum + rule ;
+					+ "kont.mode = '"+mode+"' where trans.datum <= to_date('"+convDatum(startdatum)+"', 'YYYY-MM-DD')" + rule ;
 			if (debug)System.out.println(str_stm);
 			stmt = con
 			.prepareStatement(str_stm);
 	       res = stmt.executeQuery();
 	   	while (res.next()) {
-			sum=(res.getDouble("sum(trans.wert)"));
+			sum=(res.getDouble("summe"));
 	   	}
 		} catch (SQLException e) {
 			System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
@@ -780,7 +784,7 @@ public class DB {
 
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm=("select trans.datum as datum, trans.wert as wert, (select mode from konten where id=trans.konto_id) AS mode from transaktionen trans where datum > "+startdate+" and datum <= "+enddate+ rule +" order by datum");
+			String str_stm=("select trans.datum as datum, trans.wert as wert, (select mode from konten where id=trans.konto_id) AS mode from transaktionen trans where datum > to_date('"+convDatum(startdate)+"', 'YYYY-MM-DD') and datum <= to_date('"+convDatum(enddate)+"', 'YYYY-MM-DD')"+ rule +" order by datum");
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
@@ -809,7 +813,7 @@ public class DB {
 			//String kor_id=getKontoId((String)hash.get("kor_konto")).toString();
 			String kat_id=getKategorieId((String)hash.get("kategorie")).toString();
 			PreparedStatement stmt;
-			String stm= "insert into transaktionen values(null,'" 
+			String stm= "insert into transaktionen values(default,'" 
 				+ hash.get("name") + "',"
 				+ konto_id + ","
 				+ hash.get("wert")  + ",'"
@@ -826,7 +830,7 @@ public class DB {
 			insert_history((String)hash.get("user"),"0","where name='"+hash.get("name")+"' and" +
 					 " konto_id=" + konto_id + " and" +
 					 " wert=" + hash.get("wert") + " and" +
-					 " datum=" + ((String)hash.get("datum")).replaceAll("-", "") + " and" +
+					 " datum='" + ((String)hash.get("datum")) + "' and" +
 					 " beschreibung='" + hash.get("beschreibung") + "' and" +
 					 " kategorie = "+ kat_id + " and" +
 					 " partner='" + hash.get("partner") + "'");
@@ -841,7 +845,7 @@ public class DB {
 		try {
 			
 			PreparedStatement stmt;
-			String stm= "insert into transaktionen values(null,'" 
+			String stm= "insert into transaktionen values(default,'" 
 				+ hash.get("name") + "',"
 				+ hash.get("konto") + ","
 				+ hash.get("wert")  + ",'"
@@ -858,7 +862,7 @@ public class DB {
 			insert_history((String)hash.get("user"),"0","where name='"+hash.get("name")+"' and" +
 										 " konto_id=" + hash.get("konto") + " and" +
 										 " wert=" + hash.get("wert") + " and" +
-										 " datum=" + ((String)hash.get("datum")).replaceAll("-", "") + " and" +
+										 " datum='" + ((String)hash.get("datum")) + "' and" +
 										 " beschreibung='" + hash.get("beschreibung") + "' and" +
 										 " kategorie='" + hash.get("kategorie") + "' and" +
 										 " partner='" + hash.get("partner") + "'");
@@ -873,7 +877,7 @@ public class DB {
 		try {
 			
 			PreparedStatement stmt;
-			String stm= "insert into transaktionen values(null,'" 
+			String stm= "insert into transaktionen values(,'" 
 				+ hash.get("name") + "',"
 				+ hash.get("konto") + ","
 				+ hash.get("wert")  + ",'"
@@ -890,7 +894,7 @@ public class DB {
 			insert_history((String)hash.get("user"),"0","where name='"+hash.get("name")+"' and" +
 					 " konto_id=" + hash.get("konto") + " and" +
 					 " wert=" + hash.get("wert") + " and" +
-					 " datum=" + ((String)hash.get("datum")).replaceAll("-", "") + " and" +
+					 " datum='" + ((String)hash.get("datum")) + "' and" +
 					 " beschreibung='" + hash.get("beschreibung") + "' and" +
 					 " kategorie='" + hash.get("kategorie") + "' and" +
 					 " partner='" + hash.get("partner") + "'");
@@ -909,7 +913,7 @@ public class DB {
 			String stm="";
 			if (update.equals("0"))
 			{
-			stm= "insert into reccuring values(null," 
+			stm= "insert into reccuring values(default," 
 				+ hash.get("korid") + ",'"
 				+ hash.get("end_datum") + "','"
 				+ hash.get("wiederholung") + "','"
@@ -975,7 +979,7 @@ public class DB {
 
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm=("select id, name, konto_id, wert, datum, partner, beschreibung, kategorie, kor_id, cycle,planed from transaktionen  where kor_id = "+kor_id+" and datum <=" +datum.replaceAll("-","")+" order by datum desc limit 1");
+			String str_stm=("select id, name, konto_id, wert, datum, partner, beschreibung, kategorie, kor_id, cycle,planed from transaktionen  where kor_id = "+kor_id+" and datum <= to_date('"+convDatum(datum)+"', 'DD-MM-YYYY')"+" order by datum desc limit 1");
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
@@ -1049,11 +1053,11 @@ public class DB {
 			String stm_str ="";
 			if (schonEingetragen)
 			{
-			stm_str="select count(*) from transaktionen  where kor_id = "+kor_id+" and datum <= "+datum+";";
+			stm_str="select count(*) from transaktionen  where kor_id = "+kor_id+" and datum <= to_date('"+convDatum(datum)+"','YYYY-MM-DD')";
 			}
 			else
 			{
-				stm_str="select count(*) from transaktionen  where kor_id = "+kor_id+" and datum > "+datum+";";
+				stm_str="select count(*) from transaktionen  where kor_id = "+kor_id+" and datum > to_date('"+convDatum(datum)+"','YYYY-MM-DD')";
 				}	
 			if (debug) System.out.println(stm_str);
 			stmt = con
@@ -1196,7 +1200,7 @@ public class DB {
 			String str_stm="select id from transaktionen where " +
 					" name = '"+ trans.get("name")+"' and " +
 					" konto_id = "+ trans.get("konto") + " and "+
-					" datum = " + ((String)trans.get("datum")).replaceAll("-", "") + " and "+
+					" datum = " + convDatum(((String)(trans.get("datum")))) + " and "+
 					" kategorie = "+ trans.get("kategorie")+ " and "+
 					" kor_id =  "+ trans.get("kor_id");
 			if (debug) System.out.println(str_stm);
@@ -1284,8 +1288,8 @@ public class DB {
 					"kor_id = "+ hash.get("neue_kor_id") +"," +
 					"cycle = "+ hash.get("cycle")+"," +
 					"planed = '"+ hash.get("planed")+
-					"' where kor_id = " + hash.get("kor_id")+ " and konto_id="+ konto_id +" and datum >="+datum.replaceAll("-","");
-			whereHist="where kor_id = " + hash.get("neue_kor_id")+ " and konto_id="+ konto_id +" and datum >="+datum.replaceAll("-","");
+					"' where kor_id = " + hash.get("kor_id")+ " and konto_id="+ konto_id +" and datum >= to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
+			whereHist="where kor_id = " + hash.get("neue_kor_id")+ " and konto_id="+ konto_id +" and datum >=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (groesser==0)//einzeln
 			{
@@ -1299,8 +1303,8 @@ public class DB {
 				"kor_id = "+ hash.get("neue_kor_id") +"," +
 				"cycle = "+ hash.get("cycle")+"," +
 				"planed = '"+ hash.get("planed")+
-				"' where kor_id = " + hash.get("kor_id")+ " and konto_id="+ konto_id +" and datum ="+datum.replaceAll("-","");
-				whereHist="where kor_id = " + hash.get("neue_kor_id")+ " and konto_id="+ konto_id +" and datum ="+datum.replaceAll("-","");
+				"' where kor_id = " + hash.get("kor_id")+ " and konto_id="+ konto_id +" and datum = to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
+				whereHist="where kor_id = " + hash.get("neue_kor_id")+ " and konto_id="+ konto_id +" and datum =to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (groesser==2)//zuvor vorher false
 			{
@@ -1314,8 +1318,8 @@ public class DB {
 				"kor_id = "+ hash.get("neue_kor_id") +"," +
 				"cycle = "+ hash.get("cycle")+"," +
 				"planed = '"+ hash.get("planed")+
-				"' where kor_id = " + hash.get("kor_id")+ " and konto_id="+ konto_id +" and datum <="+datum.replaceAll("-","");
-				whereHist="where kor_id = " + hash.get("neue_kor_id")+ " and konto_id="+ konto_id +" and datum <="+datum.replaceAll("-","");
+				"' where kor_id = " + hash.get("kor_id")+ " and konto_id="+ konto_id +" and datum <=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
+				whereHist="where kor_id = " + hash.get("neue_kor_id")+ " and konto_id="+ konto_id +" and datum <=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}	
 			if (debug) System.out.println(str);
 			PreparedStatement stmt;
@@ -1342,11 +1346,11 @@ public class DB {
 			}
 			if (anwenden.equals("folgend"))
 			{
-				stm_str="delete from transaktionen where id=" + id +" and datum >="+datum.replaceAll("-","");
+				stm_str="delete from transaktionen where id=" + id +" and datum >=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (anwenden.equals("zuvor"))
 			{
-				stm_str="delete from transaktionen where id=" + id +" and datum <="+datum.replaceAll("-","");
+				stm_str="delete from transaktionen where id=" + id +" and datum <=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (debug) System.out.println(stm_str);
 			stmt = con.prepareStatement(stm_str);
@@ -1389,7 +1393,7 @@ public class DB {
 			// ResultSet res = null;
 			//if (debug) System.out.println("insert into genre values(null,'"+genre+"') ");
 			String stm_str="";
-			stm_str="delete from transaktionen where kor_id = " + kor_id +" AND datum != "+datum.replaceAll("-","");
+			stm_str="delete from transaktionen where kor_id = " + kor_id +" AND datum !=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			if (debug) System.out.println(stm_str);
 			stmt = con.prepareStatement(stm_str);
 			// if (debug) System.out.println("update data_"+jahr+" set temp_out="+temp+
@@ -1416,15 +1420,15 @@ public class DB {
 			}
 			if (anwenden.equals("folgend"))
 			{
-				stm_str="delete from transaktionen where kor_id=" + kor_id +" and datum >="+datum.replaceAll("-","");
+				stm_str="delete from transaktionen where kor_id=" + kor_id +" and datum >=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (anwenden.equals("zuvor"))
 			{
-				stm_str="delete from transaktionen where kor_id=" + kor_id +" and datum <="+datum.replaceAll("-","");
+				stm_str="delete from transaktionen where kor_id=" + kor_id +" and datum <=to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (anwenden.equals("einzeln"))
 			{
-				stm_str="delete from transaktionen where kor_id=" + kor_id +" and datum ="+datum.replaceAll("-","");
+				stm_str="delete from transaktionen where kor_id=" + kor_id +" and datum =to_date('"+datum.replaceAll("-","")+"', 'YYYY-MM-DD')";
 			}
 			if (debug) System.out.println(stm_str);
 			stmt = con.prepareStatement(stm_str);
@@ -1465,13 +1469,14 @@ public class DB {
 			{
 				single_konto="konto_id=(select id from konten where kontoname='"+konto+"')and ";
 			}
-			str_stm=("select sum(wert)from transaktionen where "+single_konto+" datum <= "+datum+""+where);
+			
+			str_stm=("select sum(wert) as summe from transaktionen where "+single_konto+" datum <= to_date('"+convDatum(datum)+"','YYYY-MM-DD')"+where);
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
 			res = stmt.executeQuery();
 			while (res.next()) {
-				summe= new Double(res.getDouble("sum(wert)"));
+				summe= new Double(res.getDouble("summe"));
 			}
 		} catch (SQLException e) {
 			System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
@@ -1671,7 +1676,7 @@ public class DB {
 
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select kategorie,sum(wert) from transaktionen where datum >="+startdatum.replaceAll("-","")+ " and datum <= "+enddatum.replaceAll("-","")+wherestring+"  group by kategorie";
+			String str_stm="select kategorie,sum(wert) from transaktionen where datum >=to_date('"+startdatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+"  and datum <=to_date('"+enddatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+wherestring+"  group by kategorie";
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
@@ -1756,7 +1761,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into planung values(null,'" 
+			String stm= "insert into planung values(default,'" 
 				+ hash.get("name") + "','"
 				+ hash.get("beschreibung") + "','"
 				+ hash.get("startdatum") + "','"
@@ -1830,7 +1835,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into planung_daten values(null," 
+			String stm= "insert into planung_daten values(default," 
 				+ plan_id+ ","
 				+ kategorie+ ","
 				+ wert+ ",'"
@@ -2162,7 +2167,8 @@ public class DB {
 
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select * from settings where parameter='passwort' and wert=password('"+pass+"')";
+			//String str_stm="select * from settings where parameter='passwort' and wert=password('"+pass+"')";
+			String str_stm="select * from settings where parameter='passwort' and wert=('"+pass+"')";
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
@@ -2213,7 +2219,7 @@ public class DB {
 			boolean found=false;
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select id, name, konto_id, wert, datum, beschreibung, partner, kategorie, kor_id, cycle,planed from transaktionen where datum < "+datum+ " and planed='j' order by datum";
+			String str_stm="select id, name, konto_id, wert, datum, beschreibung, partner, kategorie, kor_id, cycle,planed from transaktionen where datum < to_date('"+convDatum(datum)+"','YYYY-MM-DD') and planed='j' order by datum";
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
@@ -2248,7 +2254,7 @@ public class DB {
 				// ResultSet res = null;
 				//if (debug) System.out.println("insert into genre values(null,'"+genre+"') ");
 				String stm_str="";			
-					stm_str="delete from transaktionen where datum < "+datum+" and planed='j' ";
+					stm_str="delete from transaktionen where datum < to_date('"+convDatum(datum)+"','YYYY-MM-DD') and planed='j' ";
 				if (debug) System.out.println(stm_str);
 				stmt = con.prepareStatement(stm_str);
 				// if (debug) System.out.println("update data_"+jahr+" set temp_out="+temp+
@@ -2294,8 +2300,8 @@ public class DB {
 			try {
 				Integer rule_id =(Integer)hash.get("rule_id");
 				Calendar cal_akt= Calendar.getInstance();
-				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyyMMdd");
-				SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
+				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat formaterTime = new SimpleDateFormat("HH:mm:ss");
 				String str= "update rules set " +
 						"name = '"+ hash.get("name") + "'," +
 						"beschreibung = '"+ hash.get("beschreibung") +"',"+
@@ -2460,7 +2466,7 @@ public class DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into rules_item values(null,"
+			String stm= "insert into rules_item values(default,"
 				+ hash.get("rule_id") + ",'"
 				+ hash.get("art") + "','"
 				+ hash.get("operator") + "','"
@@ -2537,18 +2543,18 @@ public class DB {
 				vec.addElement( new Integer(res.getInt("id")));				
 			}
 			Calendar cal_akt= Calendar.getInstance();
-			SimpleDateFormat formaterDate = new SimpleDateFormat("yyyyMMdd");
-			SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
+			SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat formaterTime = new SimpleDateFormat("HH:mm:ss");
 			for (int i=0;i<vec.size();i++)
 			{
 				
 			
 			//PreparedStatement stmt;
-			String stm= "insert into transaktion_history values(null,"
+			String stm= "insert into transaktion_history values(default,"
 				+ vec.elementAt(i)+",'"
-				+ mode +"',"
-				+ formaterDate.format(cal_akt.getTime())+","
-				+ formaterTime.format(cal_akt.getTime())+",'"
+				+ mode +"','"
+				+ formaterDate.format(cal_akt.getTime())+"','"
+				+ formaterTime.format(cal_akt.getTime())+"','"
 				+ user+"')";
 				;			
 			if (debug) System.out.println(stm);
@@ -2591,6 +2597,24 @@ public class DB {
 			if (debug) System.out.println("Select-Anweisung ausgeführt");
 			// return summe/(float)getAnz(tag,monat,year);
 			return vec;
+		}
+		private String convDatum(String dat)
+		{
+			
+			if (dat.contains("-"))
+			{
+				return dat;
+			}
+			else
+			{
+			String year= dat.substring(0,4);
+			//System.out.println("year = "+year);
+			String month= dat.substring(4,6);
+			//System.out.println("month = "+month);
+			String day= dat.substring(6,8);
+			//System.out.println("day = "+day);
+			return year+"-"+month+"-"+day;
+			}
 		}
 		
 }

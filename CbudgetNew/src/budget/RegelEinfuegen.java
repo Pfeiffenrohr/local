@@ -159,23 +159,23 @@ import javax.servlet.http.HttpSession;
 						command=command+" name ";
 						if (operator.equals("eq"))
 						{
-							command=command+" = \\'"+title+"\\'";
+							command=command+" = ''"+title+"''";
 						}
 						if (operator.equals("ne"))
 						{
-							command=command+" != \\'"+title+"\\'";
+							command=command+" != ''"+title+"''";
 						}
 						if (operator.equals("bw"))
 						{
-							command=command+" like \\'"+title+"%\\'";
+							command=command+" like ''"+title+"%''";
 						}
 						if (operator.equals("ew"))
 						{
-							command=command+" like \\'%"+title+"\\'";
+							command=command+" like ''%"+title+"''";
 						}
 						if (operator.equals("ct"))
 						{
-							command=command+" like \\'%"+title+"%\\'";
+							command=command+" like ''%"+title+"%''";
 						}
 						count++;
 					}

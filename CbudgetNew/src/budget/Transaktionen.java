@@ -65,7 +65,7 @@ import javax.servlet.http.HttpSession;
 						if (settings.containsKey("transaktionStartdatum"))
 						{
 							startdatum=(String)settings.get("transaktionStartdatum");
-							System.err.println("Stardatum = "+startdatum);
+							//System.err.println("Stardatum = "+startdatum);
 						}
 						else
 						{							
