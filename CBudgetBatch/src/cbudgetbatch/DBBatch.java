@@ -31,7 +31,7 @@ public class DBBatch extends DB {
 			if (debug) System.out.println("Verbindung erstellt");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Treiber fuer PSQL nicht gefunden");
+			System.err.println("Treiber fuer PSQL nicht gefunden"); 
 			return false;
 		}
 		return true;
