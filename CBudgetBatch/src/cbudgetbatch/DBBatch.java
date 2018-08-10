@@ -44,7 +44,7 @@ public class DBBatch extends DB {
 			ResultSet res = null;
 			Integer konto = getKontoId((String)hash.get("konto"));
 			Integer kategorie =this.getKategorieId((String)hash.get("kategorie"));
-			String str_stm="select id from transaktionen where konto_id="+konto+" and kategorie ="+kategorie+" and name='"+hash.get("name")+"' and wert="+hash.get("wert")+" and datum="+((String)hash.get("datum")).replaceAll("-","");
+			String str_stm="select id from transaktionen where konto_id="+konto+" and kategorie ="+kategorie+" and name='"+hash.get("name")+"' and wert="+hash.get("wert")+" and datum='"+((String)hash.get("datum"))+"'";
 			System.out.println(str_stm);
 			stmt = con.prepareStatement(str_stm);
 			res = stmt.executeQuery();
@@ -115,7 +115,7 @@ public class DBBatch extends DB {
 			String stm= "insert into plan_cache values(default," 
 				+ hash.get("plan_id") + ","
 				+ hash.get("kategorie_id") + ",'"
-				+ ((String)hash.get("datum")).replaceAll("-","") + "',"
+				+ ((String)hash.get("datum")) + "',"
 			    + hash.get("wert") + ")";
 			if (debug) System.out.println(stm);
 			stmt = con.prepareStatement(stm);
@@ -173,7 +173,7 @@ public class DBBatch extends DB {
 			PreparedStatement stmt;
 			String stm= "update plan_aktuell set " +
 			"plan_id = "+ plan_id + "," +
-			"datum="+datum.replaceAll("-","")+","+
+			"datum='"+datum+"',"+
 			"zeit = '"+zeit+"' where plan_id = "+plan_id+" and kategorie="+kategorie;
 			//if (debug) 
 			System.out.println(stm);
@@ -191,8 +191,8 @@ public class DBBatch extends DB {
 
 			PreparedStatement stmt;
 			String stm= "insert into plan_aktuell values(null," 
-				+ plan_id + ","
-				+ datum.replaceAll("-","") + ",'"
+				+ plan_id + ",'"
+				+ datum + "','"
 			    + zeit + "',"
 			    + kategorie +")";
 			//if (debug) 
