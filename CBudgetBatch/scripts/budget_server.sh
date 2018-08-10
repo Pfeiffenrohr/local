@@ -1,3 +1,3 @@
 #!/bin/bash
-#/usr/bin/java -jar /share/daten/austausch/budget_batch.jar budget budget budget_test /share/daten/austausch/budgetTXT.txt
-/usr/bin/java -jar /home/richard/budget/server.jar budget budget budget localhost >>/storage-pool/budget/log.txt 2>&1
+cd /home/budget/budget
+/usr/bin/java -classpath /home/budget/budget/server.jar  cbudgetbatch/Server  budget budget budget >>/home/budget/budget/log.txt 2>&1
