@@ -42,7 +42,7 @@
   	<dependency>
   		<groupId>CbudgetBase</groupId>
   		<artifactId>CbudgetBase</artifactId>
-  		<version>0.0.2-SNAPSHOT</version>
+  		<version>1.0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>postgresql</groupId>
