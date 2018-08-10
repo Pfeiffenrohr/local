@@ -15,7 +15,7 @@ public class DBBatch extends DB {
 		if (debug) if (debug) System.out.println("Verbinde mich zur Datenbank");
 		try {
 			try {
-				Class.forName("org.gjt.mm.mysql.Driver").newInstance(); // DB-
+				Class.forName("org.postgresql.Driver").newInstance(); // DB-
 																		// Treiber
 																		// laden
 			} catch (Exception E) {
@@ -24,14 +24,14 @@ public class DBBatch extends DB {
 				return false;
 			}
 
-			String url = "jdbc:mysql://192.168.2.8/"+datenbank;
+			String url = "jdbc:postgresql://localhost:5431/"+datenbank;
 
 			con = DriverManager.getConnection(url, user, passwort); // Verbindung
 																		// herstellen
 			if (debug) System.out.println("Verbindung erstellt");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Treiber fuer mySQL nicht gefunden");
+			System.err.println("Treiber fuer PSQL nicht gefunden");
 			return false;
 		}
 		return true;
@@ -112,7 +112,7 @@ public class DBBatch extends DB {
 		try {
 
 			PreparedStatement stmt;
-			String stm= "insert into plan_cache values(null," 
+			String stm= "insert into plan_cache values(default," 
 				+ hash.get("plan_id") + ","
 				+ hash.get("kategorie_id") + ",'"
 				+ ((String)hash.get("datum")).replaceAll("-","") + "',"
