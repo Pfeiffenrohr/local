@@ -42,5 +42,14 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="CbudgetBase" />
+    <orderEntry type="module-library">
+      <library name="Maven: postgresql:postgresql:42.2.24">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/postgresql-42.2.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

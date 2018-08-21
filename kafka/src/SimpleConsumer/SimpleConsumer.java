@@ -12,8 +12,8 @@ public class SimpleConsumer {
   public static void main(String[] args) {
     Properties props = new Properties();
     //props.put("bootstrap.servers", "72.16.138.151:2181"); ing04esbsand01:9092
-    props.put("bootstrap.servers", "ing04esbsand01:9092");
-   // props.put("bootstrap.servers", "localhost:9092");
+    //props.put("bootstrap.servers", "ing04esbsand01:9092");
+     props.put("bootstrap.servers", "localhost:9092");
    // props.put("bootstrap.servers", "81.169.141.91:9092");
     props.put("group.id", "group-1");
     props.put("enable.auto.commit", "true");
@@ -25,7 +25,7 @@ public class SimpleConsumer {
  
     KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(props);
    // kafkaConsumer.subscribe(Arrays.asList("test-mysql-jdbc-kunden"));
-    kafkaConsumer.subscribe(Arrays.asList("kafkatest"));
+    kafkaConsumer.subscribe(Arrays.asList("mysql1-transaktionen"));
     while (true) {
       ConsumerRecords<String, String> records = kafkaConsumer.poll(100);
       for (ConsumerRecord<String, String> record : records) {
