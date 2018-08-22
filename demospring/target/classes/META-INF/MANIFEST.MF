@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Demo for Spring
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: lechnerri
+Implementation-Vendor-Id: de.richardlechner
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/demospring
+Created-By: Maven Integration for Eclipse
+

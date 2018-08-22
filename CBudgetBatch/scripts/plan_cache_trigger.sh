@@ -1,4 +1,4 @@
 #!/bin/bash
-date >>/home/richard/budget/plan_cache_trigger.log
-cd /home/richard/budget
-/usr/bin/java -Xms512m  -Xmx1024m -jar plan_cache.jar budget budget budget trigger localhost >> /home/richard/budget/plan_cache_trigger.log
+date >>/home/budget/budget/plan_cache_trigger.log
+cd /home/budget/budget
+/usr/bin/java -Xms512m  -Xmx1024m  -classpath /home/budget/budget/server.jar:/home/budget/budget/lib/CbudgetBase-1.0.1-SNAPSHOT.jar:/home/budget/budget/lib/postgresql-42.2.4.jar  cbudgetbatch.BerechnePlanungBatch budget budget budget trigger>> /home/budget/budget/plan_cache_trigger.log

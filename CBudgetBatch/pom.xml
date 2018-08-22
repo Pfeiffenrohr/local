@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>CBudgetBatch</groupId>
   <artifactId>CBudgetBatch</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>CBudgetBatch</name>
   <description>CBudgetBatch</description>
   <build>
@@ -17,7 +17,7 @@
            <encoding>Cp1252</encoding>
         </configuration>
       </plugin>
-      <plugin>
+        <plugin>
     <artifactId>maven-dependency-plugin</artifactId>
     <executions>
         <execution>
@@ -42,7 +42,7 @@
   	<dependency>
   		<groupId>CbudgetBase</groupId>
   		<artifactId>CbudgetBase</artifactId>
-  		<version>0.0.2-SNAPSHOT</version>
+  		<version>1.0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>postgresql</groupId>
