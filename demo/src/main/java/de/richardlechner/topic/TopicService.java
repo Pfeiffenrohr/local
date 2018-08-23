@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class TopicService {
 	
 	@Autowired
-	TopicRepository topicRepository;
+	TopicRepository topicRepository; 
 	
 	private List <Topic> topics = new ArrayList<> ( Arrays.asList(
 			new Topic("1","eins", "desc eins"),
