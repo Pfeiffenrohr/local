@@ -1,8 +1,10 @@
 package de.richardlechner.topic;
 
+import javax.persistence.Entity;
+
 public class Topic {
 	
-	
+	@Entity
 	public Topic(String id, String name, String desc) {
 		super();
 		this.id = id;

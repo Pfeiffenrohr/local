@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Thu Aug 23 20:20:16 CEST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0165-6803-fb37-00000b78da98 
-on database directory memory:C:\Users\lechnerri\Documents\git-local\demo\testdb with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
+Fri Aug 24 11:57:08 CEST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0165-6b5d-b53c-00000b0c35f8 
+on database directory memory:C:\Users\lechnerri\Documents\git-local\demo\testdb with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
 Loaded from file:/C:/Users/lechnerri/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_171-b11

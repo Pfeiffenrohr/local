@@ -2,3 +2,4 @@
 gs-serving-web-content-complete/target/gs-serving-web-content-0.1.0.jar
 gs-serving-web-content-complete/gradle/wrapper/gradle-wrapper.jar
 gs-serving-web-content-complete/.mvn/wrapper/maven-wrapper.jar
+*.war
