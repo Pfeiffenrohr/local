@@ -24,7 +24,7 @@ public class DBBatch extends DB {
 				return false;
 			}
 
-			String url = "jdbc:postgresql://localhost/"+datenbank;
+			String url = "jdbc:postgresql://192.168.2.28/"+datenbank;
 
 			con = DriverManager.getConnection(url, user, passwort); // Verbindung
 																		// herstellen
