@@ -60,11 +60,12 @@ public class DB {
 			}
 			//String url = "jdbc:mysql://192.168.2.8/budget_test";
 			//con = DriverManager.getConnection(connectString, username, password); // Verbindung
-		      													// herstellen
+			if (debug) System.out.println("Try to connect with "+connectString);											// herstellen
 			
-				 con = DriverManager.getConnection("jdbc:postgresql://192.168.2.28:5432/budget", "budget", "budget");
-				//con = DriverManager.getConnection("jdbc:postgresql://localhost:5431/budget", "myuser", "myuser");
+				 //con = DriverManager.getConnection("jdbc:postgresql://192.168.2.28:5432/budget", "budget", "budget");
+				con = DriverManager.getConnection(connectString, username, password);
 			//DriverManager.getConnection("jdbc:postgresql://localhost:5432/budget?user=budget&password=");
+				
 			if (debug) System.out.println("Verbindung erstellt");
 		} catch (Exception e) {
 			e.printStackTrace();
