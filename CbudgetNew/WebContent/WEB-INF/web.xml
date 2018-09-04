@@ -12,7 +12,7 @@
     <servlet-name>neuesKonto</servlet-name>
     <servlet-class>budget.NeuesKonto</servlet-class>
   </servlet>
-  <servlet>
+  <servlet> 
     <servlet-name>kontoEinfuegen</servlet-name>
     <servlet-class>budget.KontoEinfuegen</servlet-class>
   </servlet>
