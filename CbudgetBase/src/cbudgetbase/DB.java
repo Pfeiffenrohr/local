@@ -1677,7 +1677,7 @@ public class DB {
 
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select kategorie,sum(wert) from transaktionen where datum >=to_date('"+startdatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+"  and datum <=to_date('"+enddatum.replaceAll("-","")+"', 'YYYY-MM-DD')"+wherestring+"  group by kategorie";
+			String str_stm="select kategorie,sum(wert) as summe from transaktionen where datum >=to_date('"+startdatum+"', 'YYYY-MM-DD')"+"  and datum <=to_date('"+enddatum+"', 'YYYY-MM-DD')"+wherestring+"  group by kategorie";
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
@@ -1685,7 +1685,7 @@ public class DB {
 			while (res.next()) {
 				Hashtable hash = new Hashtable();
 				hash.put("kategorie", new Integer(res.getInt("kategorie")));
-				hash.put("wert", new Double(res.getDouble("sum(wert)")));
+				hash.put("wert", new Double(res.getDouble("summe")));
 				
 				vec.addElement(hash);
 			}
