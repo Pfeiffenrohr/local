@@ -274,7 +274,7 @@ import javax.servlet.http.HttpSession;
 						boolean first=true;
 						if (!startdatum.equals(""))
 						{
-							where=where+" datum >= "+startdatum.replaceAll("-","");
+							where=where+" datum >= to_date('"+startdatum+"','YYYY-MM-DD')";
 							first=false;
 					    }
 						if (!enddatum.equals(""))
@@ -283,7 +283,7 @@ import javax.servlet.http.HttpSession;
 							{
 								where=where +" and ";
 							}
-							where=where+" datum <= "+enddatum.replaceAll("-","");
+							where=where+" datum <= to_date('"+enddatum+"','YYYY-MM-DD')";
 							first=false;
 						}
 						if (!name.equals(""))
