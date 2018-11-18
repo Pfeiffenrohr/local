@@ -1601,13 +1601,13 @@ public class DB {
 
 			PreparedStatement stmt;
 			ResultSet res = null;
-			String str_stm="select max("+columname+") from "+ tablename;
+			String str_stm="select max("+columname+")as maxvalue from "+ tablename;
 			if (debug) System.out.println(str_stm);
 			stmt = con
 					.prepareStatement(str_stm);
 			res = stmt.executeQuery();
 			while (res.next()) {
-				id= new Integer(res.getInt("max("+columname+")"));
+				id= new Integer(res.getInt("maxvalue"));
 			}
 		} catch (SQLException e) {
 			System.err.println("Konnte Select-Anweisung nicht ausführen" + e);
@@ -2271,16 +2271,16 @@ public class DB {
 		
 		public boolean insertRule(Hashtable hash) {
 			    Calendar cal_akt= Calendar.getInstance();
-				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyyMMdd");
+				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
 				SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
 			try {
 
 				PreparedStatement stmt;
-				String stm= "insert into rules values(null,"
-					+ formaterDate.format(cal_akt.getTime())+","
-					+ formaterTime.format(cal_akt.getTime())+","
-					+ formaterDate.format(cal_akt.getTime())+","
-					+ formaterTime.format(cal_akt.getTime())+",'"
+				String stm= "insert into rules values( default,'"
+					+ formaterDate.format(cal_akt.getTime())+"','"
+					+ formaterTime.format(cal_akt.getTime())+"','"
+					+ formaterDate.format(cal_akt.getTime())+"','"
+					+ formaterTime.format(cal_akt.getTime())+"','"
 					+ hash.get("command") + "',"
 					+ hash.get("rule_id") + ",'"
 					+ hash.get("name") + "','"
@@ -2302,13 +2302,13 @@ public class DB {
 				Integer rule_id =(Integer)hash.get("rule_id");
 				Calendar cal_akt= Calendar.getInstance();
 				SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
-				SimpleDateFormat formaterTime = new SimpleDateFormat("HH:mm:ss");
+				SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
 				String str= "update rules set " +
 						"name = '"+ hash.get("name") + "'," +
 						"beschreibung = '"+ hash.get("beschreibung") +"',"+
 						"mode = '"+ hash.get("mode")+"'," +
-						"modificationdate = " + formaterDate.format(cal_akt.getTime())+"," +
-						"modificationtime = " + formaterTime.format(cal_akt.getTime())+" "+					
+						"modificationdate = '" + formaterDate.format(cal_akt.getTime())+"'," +
+						"modificationtime = '" + formaterTime.format(cal_akt.getTime())+"' "+					
 						" where rule_id = " + hash.get("rule_id");
 					
 				if (debug) System.out.println(str);
@@ -2545,7 +2545,7 @@ public class DB {
 			}
 			Calendar cal_akt= Calendar.getInstance();
 			SimpleDateFormat formaterDate = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat formaterTime = new SimpleDateFormat("HH:mm:ss");
+			SimpleDateFormat formaterTime = new SimpleDateFormat("HHmmss");
 			for (int i=0;i<vec.size();i++)
 			{
 				
