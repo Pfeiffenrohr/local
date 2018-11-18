@@ -2286,7 +2286,7 @@ public class DB {
 					+ hash.get("name") + "','"
 					+ hash.get("beschreibung") + "','"
 				    + hash.get("mode") + "')";
-				if (debug) System.out.println(stm);
+				if (debug) System.out.println(stm); 
 				stmt = con.prepareStatement(stm);
 				stmt.executeUpdate();
 			} catch (SQLException e) {
