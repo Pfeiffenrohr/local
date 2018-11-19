@@ -23,23 +23,23 @@ public class RechteckTest {
    }
     
    @Test
-   public void derTest1() {
+   public void UmfangTest() {
       // Testfall 1: Prüfung ob Umfangsberechnung stimmt
-      System.out.println("Test1");
+      System.out.println("Umfang");
       Assert.assertTrue(60 == myRechteck.berechneUmfang());      
    }
    
    @Test
-   public void dernegativTest1() {
+   public void UmfangTestNegativ() {
       // Testfall 1: Prüfung ob Umfangsberechnung stimmt
-      System.out.println("Test1");
+      System.out.println("Umfang negativ");
       Assert.assertFalse(80 == myRechteck.berechneUmfang());      
    }
     
-   @Test
-   public void derTest2() {
+   @Test (timeout =4)
+   public void FleacheTest() {
       // Testfall 2: Prüfung ob Flächeninhaltsberechnung stimmt
-      System.out.println("Test2");
+      System.out.println("Fläche");
       Assert.assertNotNull(myRechteck.berechneInhalt());   
    }
     
