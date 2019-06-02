@@ -1,4 +1,4 @@
-FROM java:8
+FROM java:11
 WORKDIR /
 ADD target/Dockertest-0.0.1-SNAPSHOT.jar HelloWorld.jar
 EXPOSE 8080
